@@ -216,5 +216,6 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
-.DS_Store
-data/
+
+# Sandbox ad uso personale
+sandbox/
