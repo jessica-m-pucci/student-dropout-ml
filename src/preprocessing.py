@@ -1,3 +1,5 @@
+import pandas as pd
+
 def rename_columns(df):
     """
     Rinomina tutte le colonne del dataset in snake_case.
@@ -48,7 +50,7 @@ def rename_columns(df):
     }
     
     df = df.rename(columns=rename_dict)
-    # Sistemiamo la colonna con il carattere speciale \t
     df.columns = [col.replace("Daytime/evening attendance\t", "daytime_evening_attendance") 
                   if "Daytime" in col else col for col in df.columns]
+    df = df.rename(columns={"nacionality": "nationality"})
     return df
