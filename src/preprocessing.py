@@ -17,7 +17,7 @@ def rename_columns(df):
         "Course": "course",
         "Previous qualification": "previous_qualification",
         "Previous qualification (grade)": "previous_qualification_grade",
-        "Nacionality": "nacionality",
+        "Nacionality": "nationality",
         "Mother's qualification": "mothers_qualification",
         "Father's qualification": "fathers_qualification",
         "Mother's occupation": "mothers_occupation",
@@ -52,5 +52,4 @@ def rename_columns(df):
     df = df.rename(columns=rename_dict)
     df.columns = [col.replace("Daytime/evening attendance\t", "daytime_evening_attendance") 
                   if "Daytime" in col else col for col in df.columns]
-    df = df.rename(columns={"nacionality": "nationality"})
     return df
