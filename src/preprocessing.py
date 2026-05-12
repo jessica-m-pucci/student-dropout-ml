@@ -53,3 +53,27 @@ def rename_columns(df):
     df.columns = [col.replace("Daytime/evening attendance\t", "daytime_evening_attendance") 
                   if "Daytime" in col else col for col in df.columns]
     return df
+
+
+def analyze_missing_values(df):
+    """
+    Analizza i valori mancanti nel DataFrame.
+    Mostra una tabella con numero e percentuale di missing per colonna.
+    
+    Parametri:
+    - df: DataFrame pandas
+    
+    Ritorna: DataFrame con il riepilogo dei missing values
+    """
+    missing = df.isnull().sum()
+    pct = (missing / len(df)) * 100
+    
+    summary = pd.DataFrame({
+        'missing': missing,
+        'percentuale': pct.round(2)
+    }).sort_values('missing', ascending=False)
+    
+    print(f"Colonne con valori mancanti: {(missing > 0).sum()} su {len(df.columns)}")
+    print()
+    print(summary)
+    return summary
