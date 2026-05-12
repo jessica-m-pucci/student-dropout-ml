@@ -159,3 +159,40 @@ def detect_outliers_isolation_forest(df, columns, contamination=0.05, random_sta
     X = df[columns].copy()
     iso = IsolationForest(contamination=contamination, random_state=random_state)
     return iso.fit_predict(X)
+
+
+def build_preprocessing_pipeline():
+    """
+    Costruisce la pipeline di preprocessing per il machine learning.
+    Applica trasformazioni diverse per tipo di variabile.
+
+    Ritorna: ColumnTransformer con le trasformazioni definite
+    """
+    from sklearn.preprocessing import StandardScaler, OrdinalEncoder
+    from sklearn.compose import ColumnTransformer
+
+    # Variabili numeriche continue
+    numerical_cols = [
+        'previous_qualification_grade', 'admission_grade', 'age_at_enrollment',
+        'cu_1st_sem_approved', 'cu_1st_sem_grade',
+        'cu_2nd_sem_approved', 'cu_2nd_sem_grade',
+        'unemployment_rate', 'inflation_rate', 'gdp'
+    ]
+
+    # Variabili binarie (gia codificate 0/1, nessuna trasformazione necessaria)
+    binary_cols = [
+        'displaced', 'educational_special_needs', 'debtor',
+        'tuition_fees_up_to_date', 'gender', 'scholarship_holder',
+        'international', 'daytime_evening_attendance'
+    ]
+
+    # Variabili categoriche ordinali (titolo di studio genitori)
+    ordinal_cols = ['mothers_qualification', 'fathers_qualification']
+
+    preprocessor = ColumnTransformer(transformers=[
+        ('num', StandardScaler(), numerical_cols),
+        ('bin', 'passthrough', binary_cols),
+        ('ord', OrdinalEncoder(), ordinal_cols)
+    ])
+
+    return preprocessor, numerical_cols, binary_cols, ordinal_cols
