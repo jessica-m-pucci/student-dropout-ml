@@ -140,3 +140,22 @@ def detect_outliers_iqr(df, columns):
 
     summary = pd.DataFrame(results).sort_values('n_outlier_iqr', ascending=False)
     return summary
+
+
+def detect_outliers_isolation_forest(df, columns, contamination=0.05, random_state=42):
+    """
+    Identifica gli outlier usando Isolation Forest.
+    Ritorna 1 per i punti normali e -1 per gli outlier.
+
+    Parametri:
+    - df: DataFrame pandas
+    - columns: lista di colonne numeriche da analizzare
+    - contamination: percentuale attesa di outlier (default: 0.05)
+    - random_state: seed per riproducibilita
+
+    Ritorna: array con etichette (1=normale, -1=outlier)
+    """
+    from sklearn.ensemble import IsolationForest
+    X = df[columns].copy()
+    iso = IsolationForest(contamination=contamination, random_state=random_state)
+    return iso.fit_predict(X)
