@@ -107,3 +107,36 @@ def detect_outliers_std(df, columns, threshold=3):
 
     summary = pd.DataFrame(results).sort_values('n_outlier', ascending=False)
     return summary
+
+
+def detect_outliers_iqr(df, columns):
+    """
+    Identifica gli outlier usando il metodo IQR.
+    Un valore e outlier se < Q1 - 1.5*IQR oppure > Q3 + 1.5*IQR.
+
+    Parametri:
+    - df: DataFrame pandas
+    - columns: lista di colonne numeriche da analizzare
+
+    Ritorna: DataFrame con numero e percentuale di outlier per colonna
+    """
+    results = []
+    for col in columns:
+        Q1 = df[col].quantile(0.25)
+        Q3 = df[col].quantile(0.75)
+        IQR = Q3 - Q1
+        lower = Q1 - 1.5 * IQR
+        upper = Q3 + 1.5 * IQR
+        n_outliers = ((df[col] < lower) | (df[col] > upper)).sum()
+        pct = round((n_outliers / len(df)) * 100, 2)
+        results.append({
+            'colonna': col,
+            'n_outlier_iqr': n_outliers,
+            'percentuale': pct,
+            'Q1': round(Q1, 2),
+            'Q3': round(Q3, 2),
+            'IQR': round(IQR, 2)
+        })
+
+    summary = pd.DataFrame(results).sort_values('n_outlier_iqr', ascending=False)
+    return summary
