@@ -1,3 +1,4 @@
+from __future__ import annotations
 """
 Funzioni di visualizzazione condivise per il progetto student-dropout-ml.
 
