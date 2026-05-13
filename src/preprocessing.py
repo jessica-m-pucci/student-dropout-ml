@@ -186,7 +186,11 @@ def build_preprocessing_pipeline():
         'international', 'daytime_evening_attendance'
     ]
 
-    # Variabili categoriche ordinali (titolo di studio genitori)
+    # Variabili categoriche ordinali (titolo di studio genitori).
+    # I codici UCI approssimano il livello di istruzione crescente (base → dottorato):
+    # l'ordinamento numerico implicito dell'OrdinalEncoder è quindi una proxy accettabile.
+    # OneHotEncoding esploderebbe in ~30 colonne per variabile; passthrough tratterebbe
+    # differenze di codice come differenze reali di scala, il che è ugualmente impreciso.
     ordinal_cols = ['mothers_qualification', 'fathers_qualification']
 
     preprocessor = ColumnTransformer(transformers=[
