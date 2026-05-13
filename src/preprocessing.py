@@ -192,7 +192,7 @@ def build_preprocessing_pipeline():
     preprocessor = ColumnTransformer(transformers=[
         ('num', StandardScaler(), numerical_cols),
         ('bin', 'passthrough', binary_cols),
-        ('ord', OrdinalEncoder(), ordinal_cols)
+        ('ord', OrdinalEncoder(handle_unknown='use_encoded_value', unknown_value=-1), ordinal_cols)
     ])
 
     return preprocessor, numerical_cols, binary_cols, ordinal_cols
