@@ -82,7 +82,7 @@ def analyze_missing_values(df):
 def detect_outliers_std(df, columns, threshold=3):
     """
     Identifica gli outlier usando il metodo della deviazione standard.
-    Un valore e outlier se |x - mean| > threshold * std.
+    Un valore è outlier se |x - mean| > threshold * std.
 
     Parametri:
     - df: DataFrame pandas
@@ -112,7 +112,7 @@ def detect_outliers_std(df, columns, threshold=3):
 def detect_outliers_iqr(df, columns):
     """
     Identifica gli outlier usando il metodo IQR.
-    Un valore e outlier se < Q1 - 1.5*IQR oppure > Q3 + 1.5*IQR.
+    Un valore è outlier se < Q1 - 1.5*IQR oppure > Q3 + 1.5*IQR.
 
     Parametri:
     - df: DataFrame pandas
@@ -151,7 +151,7 @@ def detect_outliers_isolation_forest(df, columns, contamination=0.05, random_sta
     - df: DataFrame pandas
     - columns: lista di colonne numeriche da analizzare
     - contamination: percentuale attesa di outlier (default: 0.05)
-    - random_state: seed per riproducibilita
+    - random_state: seed per riproducibilità
 
     Ritorna: array con etichette (1=normale, -1=outlier)
     """
@@ -179,7 +179,7 @@ def build_preprocessing_pipeline():
         'unemployment_rate', 'inflation_rate', 'gdp'
     ]
 
-    # Variabili binarie (gia codificate 0/1, nessuna trasformazione necessaria)
+    # Variabili binarie (già codificate 0/1, nessuna trasformazione necessaria)
     binary_cols = [
         'displaced', 'educational_special_needs', 'debtor',
         'tuition_fees_up_to_date', 'gender', 'scholarship_holder',
