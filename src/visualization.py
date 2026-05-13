@@ -79,7 +79,7 @@ def plot_numeric_by_target(
         Nome della colonna target binaria (0/1) nel df.
     target_labels : dict, optional
         Mapping da valore numerico a etichetta leggibile per la legenda.
-        Default: {0: 'Dropout', 1: 'Graduate'}.
+        Default: {0: 'Graduate', 1: 'Dropout'}.
     display_names_override : dict, optional
         Dizionario di label aggiuntive o sostitutive rispetto a
         `DEFAULT_DISPLAY_NAMES`. Le chiavi presenti qui hanno la precedenza
@@ -124,7 +124,7 @@ def plot_numeric_by_target(
     """
     # Default mutabili gestiti dentro la funzione (anti-pattern evitarli in firma)
     if target_labels is None:
-        target_labels = {0: 'Dropout', 1: 'Graduate'}
+        target_labels = {0: 'Graduate', 1: 'Dropout'}
 
     # Costruzione del dizionario delle label leggibili:
     # parte dai default del modulo, poi sovrascrive/estende con l'override
