@@ -77,3 +77,33 @@ def analyze_missing_values(df):
     print()
     print(summary)
     return summary
+
+
+def detect_outliers_std(df, columns, threshold=3):
+    """
+    Identifica gli outlier usando il metodo della deviazione standard.
+    Un valore e outlier se |x - mean| > threshold * std.
+
+    Parametri:
+    - df: DataFrame pandas
+    - columns: lista di colonne numeriche da analizzare
+    - threshold: numero di deviazioni standard (default: 3)
+
+    Ritorna: DataFrame con numero e percentuale di outlier per colonna
+    """
+    results = []
+    for col in columns:
+        mean = df[col].mean()
+        std = df[col].std()
+        n_outliers = ((df[col] - mean).abs() > threshold * std).sum()
+        pct = round((n_outliers / len(df)) * 100, 2)
+        results.append({
+            'colonna': col,
+            'n_outlier': n_outliers,
+            'percentuale': pct,
+            'mean': round(mean, 2),
+            'std': round(std, 2)
+        })
+
+    summary = pd.DataFrame(results).sort_values('n_outlier', ascending=False)
+    return summary
