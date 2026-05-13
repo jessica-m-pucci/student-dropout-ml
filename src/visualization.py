@@ -24,14 +24,40 @@ from matplotlib.ticker import MultipleLocator
 # Estendibile dai notebook tramite il parametro `display_names_override`
 # di plot_numeric_by_target.
 DEFAULT_DISPLAY_NAMES = {
-    'previous_qualification_grade':  'Voto della qualifica precedente',
-    'admission_grade':               'Voto di ammissione',
-    'age_at_enrollment':             "Età all'iscrizione",
-    'cu_1st_sem_approved':           'Esami superati al 1° semestre',
-    'cu_2nd_sem_approved':           'Esami superati al 2° semestre',
-    'cu_1st_sem_grade':              'Voto medio al 1° semestre',
-    'cu_2nd_sem_grade':              'Voto medio al 2° semestre',
-    'inflation_rate':                'Tasso di inflazione (%)',
+    # Caratteristiche all'iscrizione
+    'previous_qualification_grade':         'Voto qualifica precedente',
+    'admission_grade':                       'Voto di ammissione',
+    'age_at_enrollment':                     "Età all'iscrizione",
+    # Performance 1° semestre
+    'cu_1st_sem_credited':                   'Crediti riconosciuti (1° sem)',
+    'cu_1st_sem_enrolled':                   'Iscrizioni a esami (1° sem)',
+    'cu_1st_sem_evaluations':                'Esami valutati (1° sem)',
+    'cu_1st_sem_approved':                   'Esami superati (1° sem)',
+    'cu_1st_sem_grade':                      'Voto medio (1° sem)',
+    'cu_1st_sem_without_evaluations':        'Senza valutazione (1° sem)',
+    # Performance 2° semestre
+    'cu_2nd_sem_credited':                   'Crediti riconosciuti (2° sem)',
+    'cu_2nd_sem_enrolled':                   'Iscrizioni a esami (2° sem)',
+    'cu_2nd_sem_evaluations':                'Esami valutati (2° sem)',
+    'cu_2nd_sem_approved':                   'Esami superati (2° sem)',
+    'cu_2nd_sem_grade':                      'Voto medio (2° sem)',
+    'cu_2nd_sem_without_evaluations':        'Senza valutazione (2° sem)',
+    # Indicatori macroeconomici
+    'unemployment_rate':                     'Tasso di disoccupazione',
+    'inflation_rate':                        'Tasso di inflazione (%)',
+    'gdp':                                   'PIL',
+    # Variabili binarie
+    'displaced':                             'Fuori sede',
+    'educational_special_needs':             'Bisogni speciali',
+    'debtor':                                'Debitore',
+    'tuition_fees_up_to_date':               'Tasse aggiornate',
+    'gender':                                'Genere',
+    'scholarship_holder':                    'Borsista',
+    'international':                         'Studente internazionale',
+    'daytime_evening_attendance':            'Frequenza diurna/serale',
+    # Variabili ordinali
+    'mothers_qualification':                 'Titolo studio madre',
+    'fathers_qualification':                 'Titolo studio padre',
 }
 
 # Palette colori standard per il confronto Dropout vs Graduate.
